@@ -1,0 +1,18 @@
+<launch>
+
+  <node pkg="beginner" name="publish_velocity" type="pubvel">
+   <remap from="turtlesim1/turtle1/cmd" to="turtlesim1/turtle1/cmd_vel"/> 
+  </node>
+   
+  <group ns="turtlesim1">
+   <node pkg="turtlesim" name="sim" type="turtlesim_node">
+   </node>
+  </group>
+  
+  <node pkg="turtlesim" name="mimic" type="mimic">
+     <remap from="input" to="turtlesim1/turtle1"/> 
+     
+     <remap from="output" to="/mobile_base_nodelet_manager"/>
+  </node> 
+</launch>
+
